@@ -81,11 +81,11 @@ Before using this Weather Application, you need to have the following dependenci
 
 ![image](https://github.com/jmiah717/Hows_the_Weather/blob/master/readme/home_screen.png)
 
-![image](How's_the_Weather/readme/Los_Angeles.png)
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/Los_Angeles.png)
 
-![image](How's_the_Weather/readme/london_GB.png)
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/london_GB.png)
 
-![image](How's_the_Weather/readme/Error_example.png)
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/Error_example.png)
 
 ---
 
