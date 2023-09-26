@@ -5,8 +5,9 @@ from dotenv import load_dotenv
 import os
 from PIL import ImageTk, Image
 import datetime
-from state_conversion import state_abbrev
-from Exception_Classes import InvalidUserInput, APIError, IndexError
+
+from modules.state_conversion import state_abbrev
+from modules.Exception_Classes import InvalidUserInput, APIError, IndexError
 
 
 class Weather:
@@ -62,16 +63,20 @@ class Weather:
         self.root.geometry("800x500")
         self.root.title("How's the Weather?")
 
-        self.font_1 = "tahoma", 15, "bold"
+        self.font_1 = "tahoma", 17, "bold"
         self.font_2 = "tahoma", 35, "bold"
-        self.font_3 = "tahoma", 13
+        self.font_3 = "tahoma", 15
 
         self.text = Entry(self.root, font=self.font_1)
         self.text.pack()
         self.text.focus()
         self.text.bind("<Return>", self.getWeather)
 
-        self.label_1 = Label(self.root, font=self.font_2, text="City, State")
+        self.label_1 = Label(
+            self.root,
+            font=self.font_3,
+            text="Enter city, state (press enter) or city, country (enter) \nor city, state, country (enter) \n\n**country codes must be 2 letters**",
+        )
         self.label_1.configure(bg="lightskyblue1")
         self.label_1.pack()
 
@@ -97,14 +102,14 @@ class Weather:
 
         # Weather Icons
         self.weather_icons = {
-            "clear_day": "Weather_App/Weather_Icons/sunny.png",
-            "day_cloud": "Weather_App/Weather_Icons/Day_cloud_sun.png",
-            "haze": "Weather_App/Weather_Icons/Haze.png",
-            "rain_day": "Weather_App/Weather_Icons/umbrella.png",
-            "mist": "Weather_App/Weather_Icons/mist.png",
-            "night_clear": "Weather_App/Weather_Icons/clear_night.png",
-            "night_rain": "Weather_App/Weather_Icons/night_rain.png",
-            "night_cloud": "Weather_App/Weather_Icons/night_cloudy.png",
+            "clear_day": "HowsTheWeather/Weather_Icons/sunny.png",
+            "day_cloud": "HowsTheWeather/Weather_Icons/Day_cloud_sun.png",
+            "haze": "HowsTheWeather/Weather_Icons/Haze.png",
+            "rain_day": "HowsTheWeather/Weather_Icons/umbrella.png",
+            "mist": "HowsTheWeather/Weather_Icons/mist.png",
+            "night_clear": "HowsTheWeather/Weather_Icons/clear_night.png",
+            "night_rain": "HowsTheWeather/Weather_Icons/night_rain.png",
+            "night_cloud": "HowsTheWeather/Weather_Icons/night_cloudy.png",
         }
 
         # Labels for Images
@@ -118,47 +123,6 @@ class Weather:
 
         load_dotenv()
         self.api_key = os.getenv("API_KEY")
-
-    # Function to take city name and return lat/long for searching
-    def getLatLong(self, city: str, state: str, country: str = "") -> tuple:
-        """
-        getLatLong takes the city, state, and country information and creates a tuple with the longitude and latitude of the location for use with the API
-
-        Args:
-            city (string): name of the city the user enters
-            state (string): state in the US the user is searching
-            country (str, optional): country code outside of the US. Defaults to "".
-
-        Returns:
-            tuple: (Latitude, Longitude)
-        """
-        try:
-            if state.lower().strip() in self.us_states:
-                country = "us"
-            else:
-                country = state
-                state = ""
-
-            convert_city_api = (
-                f"http://api.openweathermap.org/geo/1.0/direct?q="
-                f"{city},{state},{country}&limit=5&appid={self.api_key}"
-            )
-            print(convert_city_api)
-            city_json = requests.get(convert_city_api).json()
-            lat = city_json[0]["lat"]
-            long = city_json[0]["lon"]
-
-            return (lat, long)
-        except (InvalidUserInput, APIError, IndexError):
-            return messagebox.showerror(
-                title="Error!",
-                message="Something went wrong, please try again or cancel.",
-            )
-        except:
-            return messagebox.showerror(
-                title="Error!",
-                message="Please enter a valid city, state or city, country",
-            )
 
     # Function for requesting API and getting weather information
     def getWeather(self, event) -> None:
@@ -179,11 +143,14 @@ class Weather:
         if len(input_pieces) >= 2:
             self.city = input_pieces[0].strip()
             self.state = input_pieces[1].strip()
-
-            if len(input_pieces) >= 3:
+            if len(input_pieces) == 3:
                 self.country = input_pieces[2].strip()
-            else:
-                self.country = ""
+        elif len(input_pieces) > 3:
+            return messagebox.showerror(
+                title="Error!",
+                message="Please enter a valid city, state or city, country",
+            )
+
         try:
             lat, long = self.getLatLong(self.city, self.state, self.country)
             lat = str(lat)
@@ -222,6 +189,48 @@ class Weather:
 
         print(api)  # TODO: Get rid of me
 
+    # Function to take city name and return lat/long for searching
+    def getLatLong(self, city: str, state: str, country: str = "") -> tuple:
+        """
+        getLatLong takes the city, state, and country information and creates a tuple with the longitude and latitude of the location for use with the API
+
+        Args:
+            city (string): name of the city the user enters
+            state (string): state in the US the user is searching
+            country (str, optional): country code outside of the US. Defaults to "".
+
+        Returns:
+            tuple: (Latitude, Longitude)
+        """
+        try:
+            if state.lower().strip() in self.us_states:
+                country = "us"
+            else:
+                country = state
+                state = ""
+
+            convert_city_api = (
+                f"http://api.openweathermap.org/geo/1.0/direct?q="
+                f"{city},{state},{country}&limit=5&appid={self.api_key}"
+            )
+            print(convert_city_api)
+            city_json = requests.get(convert_city_api).json()
+            lat = city_json[0]["lat"]
+            long = city_json[0]["lon"]
+            self.state = city_json[0]["state"]
+            self.country = city_json[0]["country"]
+            return (lat, long)
+        except (InvalidUserInput, APIError, IndexError):
+            return messagebox.showerror(
+                title="Error!",
+                message="Something went wrong, please try again or cancel.",
+            )
+        except:
+            return messagebox.showerror(
+                title="Error!",
+                message="Please enter a valid city, state or city, country",
+            )
+
     # Determine if it is night
     def is_night(
         self, sunrise: int, sunset: int, current_time: datetime, tz_offset
@@ -248,21 +257,21 @@ class Weather:
 
     def clear_labels(self):
         """
-        clear_labels _summary_
+        clear_labels clears the used labels to ensure the new label will have a clean slate
         """
         for label in self.weather_labels.values():
             label.pack_forget()
 
     def getOutput(self, weather, json, sunrise, sunset, current_time, timezone_offset):
         """
-        getOutput _summary_
+        getOutput gets the final output into the Tkinter window
 
         Args:
-            weather (_type_): _description_
-            json (_type_): _description_
+            weather (string): weather details
+            json (json data): json data used to get final output
 
         Returns:
-            _type_: _description_
+            str: output of final weather and graphic
         """
         try:
             nighttime = self.is_night(sunrise, sunset, current_time, timezone_offset)
@@ -309,29 +318,15 @@ class Weather:
                     self.weather_labels["haze"].pack()
 
             max_min_humidity = (
-                "Low:\t"
-                + str(min_temp)
-                + " ℉"
-                + "\n"
-                + "High:\t"
-                + str(max_temp)
-                + " ℉"
-                + "\n"
-                + "Humidity:\t"
-                + str(humidity)
-                + " %"
-                + "\n"
-                + "Sunrise:\t"
-                + str(sunrise_time.strftime("%I:%M"))
-                + " AM"
-                + "\n"
-                + "Sunset:\t"
-                + str(sunset_time.strftime("%I:%M"))
-                + " PM"
+                f"Low:\t{str(min_temp)} ℉\nHigh:\t{str(max_temp)}"
+                f"℉\nHumidity:\t{str(humidity)} %\nSunrise:\t"
+                f"{str(sunrise_time.strftime('%I:%M'))} AM\nSunset:\t"
+                f"{str(sunset_time.strftime('%I:%M'))} PM"
             )
-
+            location = f"{json['name']}, {self.state}, {self.country}\n"
+            self.label_1.pack_forget()
             return (
-                self.label_1.config(text=final_weather),
+                self.label_2.config(text=f"{location}\n{final_weather}"),
                 self.label_3.config(text=max_min_humidity, justify=LEFT),
             )
 
@@ -351,9 +346,3 @@ if __name__ == "__main__":
     root = Tk()
     application = Weather(root)
     root.mainloop()
-
-
-# TODO: Consider breaking up the files into modules imported into the class
-# TODO: typing in "aldlskfj" gives a result for Ḩeşār-e Sefīd, IR -- need to perhaps fix that and other nonsense entries
-
-# TODO: Display city, state/country with the info

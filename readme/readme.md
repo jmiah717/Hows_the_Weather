@@ -46,7 +46,7 @@ Before using this Weather Application, you need to have the following dependenci
 
 3. Install the required dependencies by running the following commands in your terminal:
 
-   ```
+   ```bash
    pip install requests
    pip install PIL
    ```
@@ -79,9 +79,13 @@ Before using this Weather Application, you need to have the following dependenci
 
 ## Screenshots
 
-![image](https://github.com/jmiah717/Hows_the_Weather/assets/97563275/38c90b0f-9128-4424-81c2-0a43e0e38d60)
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/master/readme/home_screen.png)
 
-![image](https://github.com/jmiah717/Hows_the_Weather/assets/97563275/41cd880b-bcbd-443c-b26d-c1bddcd425e9)
+![image](How's_the_Weather/readme/Los_Angeles.png)
+
+![image](How's_the_Weather/readme/london_GB.png)
+
+![image](How's_the_Weather/readme/Error_example.png)
 
 ---
 
