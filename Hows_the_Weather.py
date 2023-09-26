@@ -8,8 +8,6 @@ import datetime
 from state_conversion import state_abbrev
 from Exception_Classes import InvalidUserInput, APIError, IndexError
 
-# new commit
-
 
 class Weather:
     """
@@ -99,14 +97,14 @@ class Weather:
 
         # Weather Icons
         self.weather_icons = {
-            "clear_day": "Weather_Icons/sunny.png",
-            "day_cloud": "Weather_Icons/Day_cloud_sun.png",
-            "haze": "Weather_Icons/Haze.png",
-            "rain_day": "Weather_Icons/umbrella.png",
-            "mist": "Weather_Icons/mist.png",
-            "night_clear": "Weather_Icons/clear_night.png",
-            "night_rain": "Weather_Icons/night_rain.png",
-            "night_cloud": "Weather_Icons/night_cloudy.png",
+            "clear_day": "Weather_App/Weather_Icons/sunny.png",
+            "day_cloud": "Weather_App/Weather_Icons/Day_cloud_sun.png",
+            "haze": "Weather_App/Weather_Icons/Haze.png",
+            "rain_day": "Weather_App/Weather_Icons/umbrella.png",
+            "mist": "Weather_App/Weather_Icons/mist.png",
+            "night_clear": "Weather_App/Weather_Icons/clear_night.png",
+            "night_rain": "Weather_App/Weather_Icons/night_rain.png",
+            "night_cloud": "Weather_App/Weather_Icons/night_cloudy.png",
         }
 
         # Labels for Images
