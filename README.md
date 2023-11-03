@@ -1,26 +1,100 @@
-# How's the Weather
+# How's the Weather? -  Readme
 
-This is a Python application that uses the Tkinter library to create a graphical user interface (GUI) for displaying weather information based on user input. The application allows users to enter a location (city, state, and optionally a country) to retrieve current weather data for that location. The weather data is obtained from the OpenWeatherMap API. The application also displays weather icons corresponding to the current weather condition.
+This Weather Application is a Python program built using the Tkinter library and the OpenWeatherMap API. It allows users to search for a city and retrieve up-to-date weather information for that location. Below, you'll find important information about how the application works and how to use it effectively.
 
-## Prerequisites
+## Table of Contents
 
-Before you can use this application, you need to set up your environment and obtain an API key from OpenWeatherMap. Follow these steps to get started:
+- [How's the Weather? -  Readme](#hows-the-weather----readme)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Dependencies](#dependencies)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Screenshots](#screenshots)
+  - [Contributing](#contributing)
 
-1. **Python**: Make sure you have Python 3.x installed on your system.
+---
 
-2. **Required Libraries**: Install the necessary Python libraries using `pip`:
+## Features
 
-3. **API Key**: You need an API key from OpenWeatherMap to access weather data. Create a free account on the OpenWeatherMap website and generate an API key.
+- **Weather Information**: Get current weather information for a specific city, including temperature, humidity, sunrise time, sunset time, and weather conditions.
 
-4. **Environment Variables**: Create a `.env` file in the same directory as your script and add your OpenWeatherMap API key to it. 
+- **Day/Night Indicator**: The application changes its display based on whether it is daytime or nighttime in the searched location.
 
+- **User-Friendly Interface**: A simple and easy-to-use graphical interface built with Tkinter.
+
+- **Real-Time Data**: Retrieves real-time weather data from the OpenWeatherMap API.
+
+---
+
+## Dependencies
+
+Before using this Weather Application, you need to have the following dependencies installed:
+
+- Python 3.x
+- Tkinter (included in standard Python libraries)
+- Requests library (`pip install requests`)
+- PIL (Python Imaging Library) library (`pip install PIL`)
+
+---
+
+## Installation
+
+1. Clone this repository to your local machine or download the code as a ZIP file.
+
+2. Make sure you have Python 3.x installed. You can download it from the [official Python website](https://www.python.org/downloads/).
+
+3. Install the required dependencies by running the following commands in your terminal:
+
+   ```bash
+   pip install requests
+   pip install PIL
+   ```
+
+4. Open a terminal/command prompt, navigate to the directory where you have the Weather Application code, and run the command with the file name as you saved it:
+
+5. The Weather Application window should now open, allowing you to enter a city and view the weather information.
+
+---
 
 ## Usage
 
-1. Run the application by executing the script. A GUI window will appear.
+1. Launch the Weather Application by following the installation steps above.
 
-```bash
-python your_script_name.py
+2. Enter the name of the city you want to check the weather for in the text input field.
 
+3. You can specify the state or (if applicable) country by separating them with commas. For example, "New York, NY" or "London, UK." The searches are not case-sensitive.
 
+4. Press the `Enter` key to retrieve weather information.
 
+5. The weather information, including temperature, humidity, and conditions, will be displayed on the screen. Additionally, an icon representing the current weather conditions will be shown.
+
+6. The application also indicates whether it is daytime or nighttime in the searched location, adjusting the display icons accordingly.
+
+7. You can search for weather information for different cities by entering a new location in the text input field and pressing `Enter`.
+
+8. To exit the application, simply close the window.
+
+---
+
+## Screenshots
+
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/master/readme/home_screen.png)
+
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/Los_Angeles.png)
+
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/london_GB.png)
+
+![image](https://github.com/jmiah717/Hows_the_Weather/blob/4161bca5d6da996c0d018fdcfb78fb4c0070d174/readme/Error_example.png)
+
+---
+
+## Contributing
+
+Contributions to this Weather Application are not currently open. If you have any suggestions, bug reports, or feature requests, please let me know at <jmiah717@gmail.com>
+
+---
+
+Thank you for using How's the Weather? I hope you find it useful for checking the weather in different locations. If you have any questions or encounter any issues, please feel free to reach out.
+
+**Happy weather checking!**
