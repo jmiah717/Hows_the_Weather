@@ -58,6 +58,7 @@ Before using this Weather Application, you need to have the following dependenci
 ---
 
 ## Usage
+IMPORTANT: You will need to obtain a free API key to use this software from https://openweathermap.org/. You simply request the API, make a .env file and save it like this: API_KEY="{the_key_they_supply}"
 
 1. Launch the Weather Application by following the installation steps above.
 

@@ -102,14 +102,14 @@ class Weather:
 
         # Weather Icons
         self.weather_icons = {
-            "clear_day": "HowsTheWeather/Weather_Icons/sunny.png",
-            "day_cloud": "HowsTheWeather/Weather_Icons/Day_cloud_sun.png",
-            "haze": "HowsTheWeather/Weather_Icons/Haze.png",
-            "rain_day": "HowsTheWeather/Weather_Icons/umbrella.png",
-            "mist": "HowsTheWeather/Weather_Icons/mist.png",
-            "night_clear": "HowsTheWeather/Weather_Icons/clear_night.png",
-            "night_rain": "HowsTheWeather/Weather_Icons/night_rain.png",
-            "night_cloud": "HowsTheWeather/Weather_Icons/night_cloudy.png",
+            "clear_day": "Hows_the_Weather/Weather_Icons/sunny.png",
+            "day_cloud": "Hows_the_Weather/Weather_Icons/Day_cloud_sun.png",
+            "haze": "Hows_the_Weather/Weather_Icons/Haze.png",
+            "rain_day": "Hows_the_Weather/Weather_Icons/umbrella.png",
+            "mist": "Hows_the_Weather/Weather_Icons/mist.png",
+            "night_clear": "Hows_the_Weather/Weather_Icons/clear_night.png",
+            "night_rain": "Hows_the_Weather/Weather_Icons/night_rain.png",
+            "night_cloud": "Hows_the_Weather/Weather_Icons/night_cloudy.png",
         }
 
         # Labels for Images
